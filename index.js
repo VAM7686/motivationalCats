@@ -14,7 +14,11 @@ const getQuote = () => {
 			dataAuthor = data.quoteAuthor;
 			dataQuoteText = data.quoteText;
 			quoteText.innerHTML = dataQuoteText;
-			quoteAuthor.innerHTML = dataAuthor;
+			if (dataAuthor == "") {
+				quoteAuthor.innerHTML = "Anonymous";
+			} else {
+				quoteAuthor.innerHTML = dataAuthor;
+			}
 		});
 };
 
@@ -23,15 +27,14 @@ const getCat = () => {
 		.then(res => res.json())
 		.then(data => {
 			catUrl = data.file;
+			catImgSrc.src = catUrl;
 		});
-
-	catImgSrc.src = catUrl;
-	console.log(catImgSrc);
 };
 
 let quoteText = document.getElementById("moteQuote");
 let quoteAuthor = document.getElementById("quoteAuthor");
 let catImgSrc = document.getElementById("catImg");
+
 
 const quoteButton = document.getElementById("quoteGetter");
 quoteButton.onclick = () => {
